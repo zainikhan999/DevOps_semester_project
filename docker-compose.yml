@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - devops-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000"
+    networks:
+      - devops-network
+
+networks:
+  devops-network:
+    driver: bridge

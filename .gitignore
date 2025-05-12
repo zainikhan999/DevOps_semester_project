@@ -1,0 +1,4 @@
+/backend/nodemodules
+# Ignore all node_modules folders
+**/node_modules/
+.env
