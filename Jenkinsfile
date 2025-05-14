@@ -2,10 +2,12 @@ pipeline {
   agent any
 
   stages {
-    stage('Checkout Code') {
-      steps {
-        git 'https://github.com/zainikhan999/DevOps_semester_project'
-      }
+   stage('Checkout Code') {
+     steps {
+         git branch: 'main', url: 'https://github.com/zainikhan999/DevOps_semester_project'
+        }
+}
+
     }
 
     stage('Build Containers') {
