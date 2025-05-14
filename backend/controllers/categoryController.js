@@ -6,7 +6,7 @@ dotenv.config();
 
 // Set up Google Gemini API instance
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_API_KEY, // Use the environment variable for the Google API key
+  apiKey: process.env.GEMINI_API_KEY, // Use the environment variable for the Google API key
 });
 
 const HF_API_KEY = process.env.HF_API_KEY; // Use the environment variable for Hugging Face API key

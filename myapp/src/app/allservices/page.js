@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext"; // Import the AuthContext
+import Image from "next/image"; // Import Next.js Image
+
 const AllGigs = () => {
   const router = useRouter();
   const [gigs, setGigs] = useState([]);
@@ -11,11 +13,13 @@ const AllGigs = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredGigs, setFilteredGigs] = useState([]);
   const { user } = useAuth(); // Access the user from AuthContext
+
   useEffect(() => {
     if (!user) {
       router.push("/login");
     }
   }, [user, router]);
+
   useEffect(() => {
     const fetchGigsAndProfiles = async () => {
       try {
@@ -105,10 +109,12 @@ const AllGigs = () => {
               >
                 {/* Display User Profile First */}
                 <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={profile?.profileImage}
+                  <Image
+                    src={profile?.profileImage || "/default-profile.jpg"} // Default profile image if none is available
                     alt="Profile"
-                    className="w-16 h-16 rounded-full object-cover"
+                    width={64}
+                    height={64}
+                    className="rounded-full object-cover"
                   />
                   <p className="text-sm text-gray-600">
                     {profile?.name} (@{gig.username})

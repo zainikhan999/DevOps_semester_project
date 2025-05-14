@@ -45,7 +45,7 @@ export default function Navbar() {
 
       fetchNotifications();
     }
-  }, [user]); // Trigger on component mount or whenever user changes
+  }, [user, setNotification]); // Trigger on component mount or whenever user or setNotification changes
 
   useEffect(() => {
     if (socket) {
@@ -57,14 +57,14 @@ export default function Navbar() {
         ]);
       });
     }
-  }, [socket]);
+  }, [socket, setNotification]); // Add setNotification to the dependency array
 
   // Handle socket notifications
   useEffect(() => {
     if (notification && Array.isArray(notification)) {
       setNotificationCount(notification.filter((notif) => !notif.seen).length); // Count unread notifications
     }
-  }, [notification]);
+  }, [notification, setNotification]); // Add setNotification to the dependency array
 
   // Join user to their room when the socket is ready
   useEffect(() => {

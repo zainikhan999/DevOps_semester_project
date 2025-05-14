@@ -116,9 +116,9 @@ export default function SwapFormModal({
             </button>
           </div>
 
-          <p className="text-xs text-gray-600">
-            This ID links two swap requests together. Click "Generate" to start
-            a swap, or paste the Task ID sent by someone else.
+          <p>
+            This ID links two swap requests together. Click &quot;Generate&quot;
+            to start a swap, or paste the Task ID sent by someone else.
           </p>
         </label>
 

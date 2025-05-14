@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import Image from "next/image"; // Import Image from next/image
 
 export default function ProfileWithSidebar() {
   const [formData, setFormData] = useState({
@@ -52,9 +53,11 @@ export default function ProfileWithSidebar() {
         {/* Sidebar */}
         <div className="w-full md:w-1/3 flex flex-col items-center text-center border-b md:border-b-0 md:border-r border-gray-200 p-6 overflow-y-auto">
           {formData.profileImage ? (
-            <img
+            <Image
               src={formData.profileImage}
               alt="Profile"
+              width={112} // Adjust width and height as needed
+              height={112}
               className="w-28 h-28 rounded-full object-cover mb-4"
             />
           ) : (
