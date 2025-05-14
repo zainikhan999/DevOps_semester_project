@@ -7,6 +7,13 @@ pipeline {
         git branch: 'main', url: 'https://github.com/zainikhan999/DevOps_semester_project'
       }
     }
+    stage('Check Docker') {
+       steps {
+    sh 'which docker || echo "Docker not installed"'
+    sh 'docker --version || echo "Docker not working"'
+    sh 'docker compose version || echo "Docker Compose not working"'
+  }
+}
 
     stage('Build Containers') {
       steps {
