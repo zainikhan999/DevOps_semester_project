@@ -7,7 +7,12 @@ WORKDIR /app
 # Copy package.json and package-lock.json to install dependencies
 COPY package*.json ./
 
+# Set safer envs for npm install
+ENV NODE_OPTIONS=--max-old-space-size=2048
+ENV npm_config_legacy_peer_deps=true
+ENV npm_config_registry=https://registry.npmjs.org/
 # Install dependencies
+
 RUN npm install
 
 # Copy the rest of the application code
@@ -21,3 +26,4 @@ EXPOSE 3000
 
 # Start the frontend application
 CMD ["npm", "start"]
+
