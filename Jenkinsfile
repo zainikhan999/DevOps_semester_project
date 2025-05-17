@@ -27,11 +27,12 @@ pipeline {
       }
     }
 
-    stage('Test App') {
+    sstage('Test App') {
   steps {
     sh '''
+      echo "Checking if frontend container is ready..."
       for i in {1..15}; do
-        if curl -s http://localhost:3000; then
+        if docker-compose exec frontend curl -s http://localhost:3000; then
           echo "App is up!"
           break
         else
@@ -42,6 +43,7 @@ pipeline {
     '''
   }
 }
+
 
   }
 }
