@@ -22,8 +22,8 @@ pipeline {
           string(credentialsId: 'MONGO_URI', variable: 'MONGO_URI')
         ]) {
           sh '''
-            echo "GENAI_KEY=$GENAI_KEY" > backend/.env
-            echo "DB_URI=$DB_URI" >> backend/.env
+            echo "GENAI_API_KEY=$GENAI_API_KEY" > backend/.env
+            echo "MONGO_URI=$MONGO_URI" >> backend/.env
           '''
         }
       }
