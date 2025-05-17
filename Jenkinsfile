@@ -19,7 +19,7 @@ pipeline {
       steps {
         withCredentials([
           string(credentialsId: 'GEMINI_API_KEY', variable: 'GENAI_KEY'),
-          string(credentialsId: 'MONGO_DB_URL', variable: 'DB_URI')
+          string(credentialsId: 'MONGO_DB_URI', variable: 'DB_URI')
         ]) {
           sh '''
             echo "GENAI_KEY=$GENAI_KEY" > backend/.env
