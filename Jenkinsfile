@@ -7,6 +7,23 @@ pipeline {
         git branch: 'main', url: 'https://github.com/zainikhan999/DevOps_semester_project'
       }
     }
+
+
+        stage('Setup Environment Variables') {
+  steps {
+    withCredentials([
+      string(credentialsId: 'GEMINI_API_KEY', variable: 'GEMINI_API_KEY'),
+      string(credentialsId: 'MONGO_URI', variable: 'MONGO_URI')
+    ]) {
+      script {
+        writeFile file: 'backend/.env', text: """GENAI_KEY=${env.GEMINI_API_KEY}
+DB_URI=${env.MONGO_URI}"""
+      }
+    }
+  }
+}
+
+
     stage('Check Docker') {
        steps {
     sh 'which docker || echo "Docker not installed"'
@@ -14,20 +31,6 @@ pipeline {
     sh 'docker compose version || echo "Docker Compose not working"'
   }
 }
-
-    stage('Setup Environment Variables') {
-      steps {
-        withCredentials([
-          string(credentialsId: 'GEMINI_API_KEY', variable: 'GEMINI_API_KEY'),
-          string(credentialsId: 'MONGO_URI', variable: 'MONGO_URI')
-        ]) {
-          sh '''
-            echo "GENAI_API_KEY=$GENAI_API_KEY" > backend/.env
-            echo "MONGO_URI=$MONGO_URI" >> backend/.env
-          '''
-        }
-      }
-    }
 
     stage('Build Changed Containers') {
       steps {
