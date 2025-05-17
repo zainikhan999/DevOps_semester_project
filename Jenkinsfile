@@ -15,6 +15,21 @@ pipeline {
   }
 }
 
+   stages {
+    stage('Setup Environment Variables') {
+      steps {
+        withCredentials([
+          string(credentialsId: 'GEMINI_API_KEY', variable: 'GENAI_KEY'),
+          string(credentialsId: 'MONGO_DB_URL', variable: 'DB_URI')
+        ]) {
+          sh '''
+            echo "GENAI_KEY=$GENAI_KEY" > backend/.env
+            echo "DB_URI=$DB_URI" >> backend/.env
+          '''
+        }
+      }
+    }
+    
     stage('Build Changed Containers') {
       steps {
         script {
