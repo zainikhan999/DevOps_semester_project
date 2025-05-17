@@ -15,7 +15,6 @@ pipeline {
   }
 }
 
-   stages {
     stage('Setup Environment Variables') {
       steps {
         withCredentials([
@@ -29,7 +28,7 @@ pipeline {
         }
       }
     }
-    
+
     stage('Build Changed Containers') {
       steps {
         script {
