@@ -27,7 +27,7 @@ pipeline {
       }
     }
 
-    sstage('Test App') {
+    stage('Test App') {
   steps {
     sh '''
       echo "Checking if frontend container is ready..."
