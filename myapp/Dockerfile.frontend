@@ -12,7 +12,7 @@ ENV NODE_OPTIONS=--max-old-space-size=2048
 ENV npm_config_legacy_peer_deps=true
 ENV npm_config_registry=https://registry.npmjs.org/
 # Install dependencies
-RUN apt-get update && apt-get install -y curl
+RUN apk add --no-cache curl
 
 RUN npm install
 
