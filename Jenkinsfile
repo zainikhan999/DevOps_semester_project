@@ -15,9 +15,26 @@ pipeline {
   }
 }
 
-    stage('Build Containers') {
+    stage('Build Changed Containers') {
       steps {
-        sh 'docker-compose build'
+        script {
+          def frontendChanged = sh(script: "git diff --name-only HEAD~1 HEAD | grep '^myapp/' || true", returnStatus: true) == 0
+          def backendChanged = sh(script: "git diff --name-only HEAD~1 HEAD | grep '^backend/' || true", returnStatus: true) == 0
+
+          if (frontendChanged) {
+            echo 'Changes detected in frontend. Rebuilding...'
+            sh 'docker-compose build frontend'
+          } else {
+            echo 'No changes in frontend.'
+          }
+
+          if (backendChanged) {
+            echo 'Changes detected in backend. Rebuilding...'
+            sh 'docker-compose build backend'
+          } else {
+            echo 'No changes in backend.'
+          }
+        }
       }
     }
 
