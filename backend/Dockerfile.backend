@@ -10,8 +10,6 @@ RUN apk add --no-cache python3 make g++ \
 
 COPY . .
 
-# ✅ Add this line
-COPY .env .env
 
 EXPOSE 5000
 
