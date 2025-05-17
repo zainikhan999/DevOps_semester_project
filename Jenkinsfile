@@ -28,9 +28,20 @@ pipeline {
     }
 
     stage('Test App') {
-      steps {
-        sh 'curl http://localhost:3000'
-      }
-    }
+  steps {
+    sh '''
+      for i in {1..15}; do
+        if curl -s http://localhost:3000; then
+          echo "App is up!"
+          break
+        else
+          echo "Waiting for app to be ready..."
+          sleep 2
+        fi
+      done
+    '''
+  }
+}
+
   }
 }
