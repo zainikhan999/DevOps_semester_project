@@ -1,0 +1,10 @@
+{
+  "build": {
+    "command": "npm install && npm run build",
+    "cwd": "frontend"
+  },
+  "start": {
+    "command": "npm run dev",
+    "cwd": "frontend"
+  }
+}
